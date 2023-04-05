@@ -1,9 +1,12 @@
-import './App.css';
+import './assets/styles/App.css';
+
+import Tetris from './components/Tetris';
 
 function App() {
 
   return (
     <div className="App">
+      <Tetris />
     </div>
   )
 }
