@@ -4,19 +4,24 @@ import StartButton from "./StartButton";
 
 import { createStage } from "../helpers/gameHelpers";
 
+import { StyledTetris, StyledTetrisWrapper, StyledTetrisAside } from "./styles/StyledTetris";
+
 function Tetris() {
     return (
-        <div>
-            <Stage stage={createStage()}/>
-            <div>
-                <div>
-                    <Display text="Score" />
-                    <Display text="Rows" />
-                    <Display text="Level" />
-                </div>
-                <StartButton />
-            </div>
-        </div>
+        <StyledTetrisWrapper>
+            <StyledTetris>
+                <Stage stage={createStage()} /> 
+                <StyledTetrisAside>
+                    <div>
+                        <Display text="Score" />
+                        <Display text="Rows" />
+                        <Display text="Level" />
+                    </div>
+                    <StartButton />
+                </StyledTetrisAside>
+            </StyledTetris>
+
+        </StyledTetrisWrapper>
     );
 }
 
