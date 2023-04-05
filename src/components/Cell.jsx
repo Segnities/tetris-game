@@ -1,5 +1,5 @@
-function Cell({type}) {
-    return <div></div>
+function Cell({ type }) {
+    return <div>Cell</div>
 }
 
 export default Cell;
