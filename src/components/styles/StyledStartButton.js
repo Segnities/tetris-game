@@ -16,5 +16,6 @@ export const StyledStartButton = styled.button`
 
     &:hover {
         outline: 4px solid white;
+        transition: 75ms;
     }
 `;

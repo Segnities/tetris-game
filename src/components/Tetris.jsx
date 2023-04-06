@@ -1,16 +1,18 @@
+import { useStage } from "../hooks/useStage";
 import Display from "./Display";
 import Stage from "./Stage";
 import StartButton from "./StartButton";
 
-import { createStage } from "../helpers/gameHelpers";
 
 import { StyledTetris, StyledTetrisWrapper, StyledTetrisAside } from "./styles/StyledTetris";
 
 function Tetris() {
+    const [stage, setStage] = useStage();
+
     return (
         <StyledTetrisWrapper>
             <StyledTetris>
-                <Stage stage={createStage()} /> 
+                <Stage stage={stage} />
                 <StyledTetrisAside>
                     <div>
                         <Display text="Score" />
