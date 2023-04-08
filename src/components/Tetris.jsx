@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useStage } from "../hooks/useStage";
 import { usePlayer } from "../hooks/usePlayer"
 
+import { createStage } from "../helpers/gameHelpers";
+
 import Display from "./Display";
 import Stage from "./Stage";
 import StartButton from "./StartButton";
@@ -15,10 +17,40 @@ function Tetris() {
     const [gameOver, setGameOver] = useState(false);
 
     const [stage, setStage] = useStage();
-    const [player] = usePlayer();
+    const [player, updatePlayerPos, resetPlayer] = usePlayer();
+
+    const movePlayer = (direction) => {
+        updatePlayerPos({ x: direction, y: 0 });
+    }
+
+    const startGame = () => {
+        //reset everything
+        setStage(createStage());
+        resetPlayer();
+    }
+
+    const drop = () => {
+        updatePlayerPos({ x: 0, y: 1, collided: false });
+    }
+
+    const dropPlayer = () => {
+        drop();
+    }
+
+    const move = ({ keyCode }) => {
+        if (gameOver != false) {
+            if (keyCode === 47) {
+                movePlayer(-1);
+            } else if (keyCode === 39) {
+                movePlayer(1);
+            } else if (keyCode === 40) {
+                dropPlayer();
+            }
+        }
+    }
 
     return (
-        <StyledTetrisWrapper>
+        <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={(e) => move(e)}>
             <StyledTetris>
                 <Stage stage={stage} />
                 <StyledTetrisAside>
@@ -30,7 +62,7 @@ function Tetris() {
                                     <Display text="Rows" />
                                     <Display text="Level" />
                                 </div>
-                                <StartButton />
+                                <StartButton onClick={startGame} />
                             </>
                         )
                     }
