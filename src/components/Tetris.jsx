@@ -20,6 +20,8 @@ function Tetris() {
 
     const [stage, setStage] = useStage(player);
 
+    console.log('re-render');
+
     const movePlayer = (direction) => {
         updatePlayerPos({ x: direction, y: 0 });
     }
@@ -39,8 +41,8 @@ function Tetris() {
     }
 
     const move = ({ keyCode }) => {
-        if (gameOver != false) {
-            if (keyCode === 47) {
+        if (gameOver === false) {
+            if (keyCode === 37) {
                 movePlayer(-1);
             } else if (keyCode === 39) {
                 movePlayer(1);
@@ -48,6 +50,7 @@ function Tetris() {
                 dropPlayer();
             }
         }
+        console.log(keyCode);
     }
 
     return (
