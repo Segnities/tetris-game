@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { useStage } from "../hooks/useStage";
 import { usePlayer } from "../hooks/usePlayer"
@@ -63,7 +63,7 @@ function Tetris() {
                                     <Display text="Rows" />
                                     <Display text="Level" />
                                 </div>
-                                <StartButton onClick={startGame} />
+                                <StartButton handleClick={startGame} />
                             </>
                         )
                     }
