@@ -16,8 +16,9 @@ function Tetris() {
     const [dropTime, setDropTime] = useState(0);
     const [gameOver, setGameOver] = useState(false);
 
-    const [stage, setStage] = useStage();
     const [player, updatePlayerPos, resetPlayer] = usePlayer();
+
+    const [stage, setStage] = useStage(player);
 
     const movePlayer = (direction) => {
         updatePlayerPos({ x: direction, y: 0 });
