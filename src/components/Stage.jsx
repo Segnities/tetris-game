@@ -1,8 +1,11 @@
+import React from "react";
+
 import Cell from "./Cell";
 
 import { nanoid } from "nanoid";
 
 import { StyledStage } from "./styles/StyledStage";
+import { array } from "prop-types";
 
 function Stage(props) {
     const { stage } = props;
@@ -16,3 +19,7 @@ function Stage(props) {
 }
 
 export default Stage;
+
+Stage.propTypes = {
+    stage: array
+}
