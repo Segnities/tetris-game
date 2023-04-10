@@ -8,7 +8,7 @@ function Cell({ type }) {
     return <StyledCell type={type} color={TETROMINOS[type].color} />
 }
 
-export default Cell;
+export default React.memo(Cell);
 
 Cell.propTypes = {
     type: number
