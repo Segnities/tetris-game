@@ -17,6 +17,8 @@
         "react"
     ],
     "rules": {
-        "no-unused-vars":"warn"
+        "no-unused-vars":"warn",
+        "semi": "warn",
+        "no-unexpected-multiline":"error"
     }
 }
