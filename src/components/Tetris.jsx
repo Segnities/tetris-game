@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useStage } from "../hooks/useStage";
-import { usePlayer } from "../hooks/usePlayer"
+import { usePlayer } from "../hooks/usePlayer";
 
 import { createStage, checkCollision } from "../helpers/gameHelpers";
 
@@ -16,7 +16,7 @@ function Tetris() {
     const [dropTime, setDropTime] = useState(0);
     const [gameOver, setGameOver] = useState(false);
 
-    const [player, updatePlayerPos, resetPlayer] = usePlayer();
+    const [player, updatePlayerPos, resetPlayer, tetrominoRotate] = usePlayer();
 
     const [stage, setStage] = useStage(player, resetPlayer);
 
@@ -26,14 +26,14 @@ function Tetris() {
         if (!checkCollision(player, stage, { x: direction, y: 0 })) {
             updatePlayerPos({ x: direction, y: 0 });
         }
-    }
+    };
 
     const startGame = () => {
         //reset everything
         setStage(createStage());
         resetPlayer();
         setGameOver(false);
-    }
+    };
 
     const drop = () => {
         if (!checkCollision(player, stage, { x: 0, y: 1 })) {
@@ -44,13 +44,13 @@ function Tetris() {
                 setGameOver(true);
                 setDropTime(null);
             }
-            updatePlayerPos({ x: 0, y: 0, collided: true })
+            updatePlayerPos({ x: 0, y: 0, collided: true });
         }
-    }
+    };
 
     const dropPlayer = () => {
         drop();
-    }
+    };
 
     const move = ({ keyCode }) => {
         if (gameOver === false) {
@@ -60,10 +60,12 @@ function Tetris() {
                 movePlayer(1);
             } else if (keyCode === 40) {
                 dropPlayer();
+            } else if (keyCode === 16) {
+                tetrominoRotate(stage, 1);
             }
         }
         console.log(keyCode);
-    }
+    };
 
     return (
         <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={(e) => move(e)}>

@@ -15,16 +15,34 @@ export const usePlayer = () => {
             ...prev,
             pos: { x: prev.pos.x + x, y: prev.pos.y + y },
             collided,
-        }))
-    }
+        }));
+    };
+
+    const rotate = (matrix, direction) => {
+        //Rows become cols
+        const rotatedTetromino = matrix.map((_rw, index) => matrix.map((col) => col[index]));
+        //Reverse each row to get rotated matrix
+        if (direction > 0) {
+            return rotatedTetromino.map(row => row.reverse());
+        }
+        return rotatedTetromino.reverse();
+    };
+
+    const tetrominoRotate = (stage, direction) => {
+        const playerClone = Object.assign({}, player);
+
+        playerClone.tetromino = rotate(playerClone.tetromino, direction);
+
+        setPlayer(playerClone);
+    };
 
     const resetPlayer = useCallback(() => {
         setPlayer({
             pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
             tetromino: randomTetromino().shape,
             collided: false,
-        })
-    }, [])
+        });
+    }, []);
 
-    return [player, updatePlayerPos, resetPlayer];
-}
+    return [player, updatePlayerPos, resetPlayer, tetrominoRotate];
+};
