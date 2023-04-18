@@ -9,17 +9,17 @@ import { array } from "prop-types";
 
 function Stage(props) {
     const { stage } = props;
-    return <StyledStage width={stage[0].length} height={stage.length}>
+    return (<StyledStage width={stage[0].length} height={stage.length}>
         {
             stage.map(row => row.map((cell, idx) => (
                 <Cell key={nanoid() + idx} type={cell[0]} />
             )))
         }
-    </StyledStage>
+    </StyledStage>);
 }
 
 export default Stage;
 
 Stage.propTypes = {
     stage: array
-}
+};
